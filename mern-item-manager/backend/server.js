@@ -8,6 +8,11 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
  .then(() => console.log('MongoDB connected'))
  .catch(err => console.log(err));
+// Simple route to check if the server is running
+app.get('/', (req, res) => {
+  res.send('Backend API is running!');
+});
+
 const itemRoutes = require('./routes/items');
 app.use('/api/items', itemRoutes);
 const PORT = process.env.PORT || 5000;
